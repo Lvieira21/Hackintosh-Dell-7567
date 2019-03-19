@@ -1,13 +1,13 @@
 # Personal Hackintosh Guide/Instructions for Dell 7567
 
 ### Notice
-This repo is archived as of Dec 11 (macOS version 10.14.2). The files here can still be used for future releases of macOS with just little tweaking and common sense. Be happy to fork it and develop, or I may unarchive it sometime in the future if I used macOS on this laptop again.
+This fork of [Nihhaar](https://www.github.com/Nihhaar/) uses about the same config as he made (DSDT, SSDT patches and kexts), the only difference is that I managed to work out a way to make the wireless card DW1560 work with his hackintosh EFI.
 
 ### Screenshot
-![macOS Mojave - 10.14.1](https://raw.githubusercontent.com/Nihhaar/Hackintosh-Dell-7567/master/Assets/Screenshot.png)
+![macOS High Sierra - 10.13.6](https://raw.githubusercontent.com/Lvieira21/Hackintosh-Dell-7567/master/Assets/ScreenShot.png)
 
 ### Download Required Files
-Check [releases](https://github.com/Nihhaar/Hackintosh-Dell7567/releases)
+Check [releases](https://github.com/Lvieira21/Hackintosh-Dell-7567/releases)
 ```
 Clover USB Files:
  - drivers64UEFI: HFSPlus.efi (for HFS+ fs), apfs.efi (for apfs fs)
@@ -33,16 +33,20 @@ Clover Post-Install Files:
    - VoodooPS2Controller: Kext for keyboard
 
  - kexts/Other:
-   - AppleALC: Kext for audio
+   - AppleALC: Kext for audio (1.2.8)
    - AppleBacklightFixup: Kext for backlight control even in recovery 
+   - BrcmFirmwareRepo.kext: Kext for Wireless card
+   - BrcmPatchRAM2.kext: Kext for Wireless card
+   - FakePCIID_Broadcom_WiFi.kext: Kext for Wireless card
+   - FakePCIID.kext: Kext for Wireless card
    - FakeSMC: SMC emulator
-   - Lilu: Generic kext patches
+   - Lilu: Generic kext patches (1.2.8)
    - RealtekRT8111: Kext for ethernet support
    - SATA-100-series-unsupported: 
    - USBInjectAll: Injecting USB ports
    - VoodooI2C*: Kext for precision trackpad
    - VoodooPS2Controller: Kext for keyboard
-   - WhateverGreen: Lilu plugin for various iGPU patches
+   - WhateverGreen: Lilu plugin for various iGPU patches (1.2.0)
 
  - config.plist:
    - DSDT Fixes: FixHPET, FixHeaders, FixIPIC, FixRTC, FixTMR
@@ -68,120 +72,26 @@ Clover Post-Install Files:
 ```
 
 ### Notes
- - Working hackintosh for 10.14 (Mojave) and 10.13.x (High Sierra)
+ - Currently using in 10.13.x (High Sierra), don't know about Mojave
  - No support for 4k *(I don't have a 4k variant)*. But I think it's just `my files` + `CoreDisplayFixup.kext` + `DVMT patch`
  - HDMI doesn't work on this hack because it is connected to nvidia card and we disabled it
- - Any other issues? Just open an issue in this repo!
+ - Wi-Fi, bluetooth, handoff and airdrop working flawlessly by replacing the intel wireless card to DW1560 and installing the right kexts (which are in Post-Install Kexts folder).
 
 ### Known Bugs
  - Stock wifi doesn't work (needs to be replaced with a compatible one)
- - SDCard reader (probably fixed by some kext)
  - 2.1 audio (2.0 works)
- - Audio via headphones after sleep (This actually worked on previous releases, so may be need to downgrade AppleALC to tested version like 1.2.8)
- - Built-in mic for headphones may not work
+ - Audio via headphones after sleep
 
 ### Specs
  - Intel i7-7700HQ CPU
  - Intel HD Graphics 630 / nVidia GTX 1050 Ti
  - 16GB 2400MHz DDR4 RAM
  - 15.6” 1080p IPS Display
- - 128GB SanDisk M.2 SSD (SATA)
- - 1TB 5400RPM Western Digital HDD
-
-### Prerequisites
- - Set BIOS options properly:
-   - Disable Legacy Option ROMs
-   - Change SATA operation to AHCI (If already using windows, google how to)
-   - Disable Secure Boot
-   - VT for Direct I/O (VT-d) is disabled
- - USB with >= 16GB, preferably USB 2.0 (3.0 is known to cause problems)
- - common_sense.exe
-
-## Creating macOS USB
-
-```bash
-# Figure out identifier for of your usb (/dev/diskX, for example)
-diskutil list
-
-# Partition your usb in GPT
-diskutil partitionDisk /dev/diskX 1 GPT HFS+J "install_osx" R
-
-# Copy installer image (for highsierra)
-sudo "/Applications/Install macOS High Sierra.app/Contents/Resources/createinstallmedia" --volume /Volumes/install_osx --nointeraction
-
-# Copy installer imge (for mojave)
-sudo "/Applications/Install macOS Mojave.app/Contents/Resources/createinstallmedia" --volume /Volumes/install_osx --applicationpath "/Applications/Install macOS Mojave.app" --nointeraction
-
-# Rename (for highsierra)
-sudo diskutil rename "Install macOS High Sierra" install_osx
-
-# Rename (for mojave)
-sudo diskutil rename "Install macOS Mojave" install_osx
-```
-
-**Download and install clover on usb**
-  - Download [clover](https://bitbucket.org/RehabMan/clover/downloads/)
-  - Run the installer
-  - Select the target of the install to *"install_osx"* using *"Change Install Location"*
-  - Select *Customize*
-  - Check *"Install for UEFI booting only"*, *"Install Clover in the ESP"* will automatically select
-  - check *"Metal"* from Themes
-  - Check *"OsxAptioFix3Drv-64"* from Drivers64UEFI
-  - Install Clover
-  - Place the files from given zip file (from this repo) into your *EFI/Clover* folder in usb accordingly.
+ - 256GB SanDisk M.2 SSD (SATA)
+ - 500GB SanDisk SSD Sata3
 
 
-## Booting USB and Installing macOS
-
-  - Press F12 repeatedly for one-time boot-menu and select your usb
-  - Choose *install_osx* in clover (preferably boot with -v option)
-  - Open *diskutility* and format the partition into HFS+J or apfs and label the partition (eg. macOS)
-  - Using HFS+J instead of apfs on your SSD for **10.13.x**:
-      - Target volume must already be formatted with HFS+J
-      - Open *Terminal* from the *Utilities* menu in the macOS installer and type:
-        <pre>"/Volumes/Image Volume/Install macOS High Sierra.app/Contents/Resources/startosinstall" --volume <b>the_target_volume</b> --converttoapfs NO --agreetolicense
-        </pre>
-      - Choose *the_target_volume* depending on how you named your partition (eg. /Volumes/macOS)
-  - Using HFS+J on 10.14 is somewhat buggy right now, better to use APFS
-  - System now automatically reboots, boot again into clover, but now select 'Install macOS High Sierra' (or 'Install macOS Mojave') instead of 'install_osx'
-  
-
-## Post Installation
-
-**Download and Install clover bootloader**
-  - Download [clover](https://bitbucket.org/RehabMan/clover/downloads/)
-  - Run the installer
-  - Select the target of the install to *"Target Volume"* using *"Change Install Location"*
-  - Select *Customize*
-  - Check *"Install for UEFI booting only"*, *"Install Clover in the ESP"* will automatically select
-  - check *"Metal"* from Themes
-  - Check *"OsxAptioFix3Drv-64"* from Drivers64UEFI
-  - Check *"EmuVariableUefi-64.efi"* from Drivers64UEFI
-  - Select *"Install RC scripts on target volume"*
-
-
-**Configure Clover and your System**
-  - Replace the existing config.plist with the config.plist from *“Clover Post-Install Files”*
-  - Add the two EFI drivers from *“Clover Post-Install Files”/drivers64UEFI* to `<EFI Partition>/EFI/CLOVER/drivers64UEFI`, and remove VBoxHfs-64.efi from /EFI/CLOVER/drivers64UEFI
-  - Add the included SSDTs in *patched* folder into your `<EFI Partition>/EFI/CLOVER/ACPI/patched` folder
-  - Copy all of the kexts that are located in *Clover Post-Install Files/"Clover/Other Kexts"* folder to `<EFI Partition>/EFI/Clover/Other` on your system.
-  - Copy all of the kexts that are located in *Clover Post-Install Files/"/L/E Kexts"* folder to `/Library/Extensions` on your system.
-  - Run *Scripts/fixPermissions.sh* from given release as root to fix kext permissions
-  - Reboot the laptop and boot with '-f' command line option (press space at clover)
-  - Rebuild the cache using `sudo kextcache -i /`
-  - Reboot  
-
-**Disable Hibernation**
-```bash
-sudo pmset -a hibernatemode 0
-sudo rm /var/vm/sleepimage
-sudo mkdir /var/vm/sleepimage
-sudo pmset -a standby 0
-sudo pmset -a autopoweroff 0
-sudo pmset -a powernap 0
-```
-
-## Troubleshooting
+## Troubleshooting (By Nihhaar)
 **1) Backlight level is not persisting across reboot**
  - Boot into macOS
  - Mount EFI folder and delete nvram.plist in the folder
@@ -236,7 +146,7 @@ defaults write -g CGFontRenderingFontSmoothingDisabled -bool YES
 ## Credits
  - [Rehabman](https://www.tonymacx86.com/members/rehabman.429483/)
  - [AGuyWhoIsBored](https://www.tonymacx86.com/members/aguywhoisbored.1105835/)
- - [Me](https://www.github.com/Nihhaar/) *(For putting this together & adding many required patches(see commits))*
+ - [Nihhaar](https://www.github.com/Nihhaar/) *(Putting everything together and making various patches)*
 
 ## References
  - https://www.tonymacx86.com/threads/guide-dell-inspiron-15-7567-and-similar-near-full-functionality.234988/
