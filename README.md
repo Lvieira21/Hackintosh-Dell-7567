@@ -1,7 +1,7 @@
 # Personal Hackintosh Guide/Instructions for Dell 7567
 
 ### Notice
-This fork of [Nihhaar](https://www.github.com/Nihhaar/) uses about the same config as he made (DSDT, SSDT patches and kexts), the only difference is that I managed to work out a way to make the wireless card DW1560 work with his hackintosh EFI.
+This fork of [Nihhaar's repo](https://www.github.com/Nihhaar/) uses about the same config as he made (DSDT, SSDT patches and kexts), the only difference is that I managed to work out a way to make the wireless card DW1560 work.
 
 ### Screenshot
 ![macOS High Sierra - 10.13.6](https://github.com/Lvieira21/Hackintosh-Dell-7567/blob/master/Assets/Screenshot.png?raw=true)
