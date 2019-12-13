@@ -29,18 +29,20 @@ Clover Post-Install Files:
  - /L/E Kexts:
    - ACPIBatteryManager: Kext for battery status
    - AppleBacklightFixup: Kext for backlight control
+   - Lilu: Generic kext patches (Brightness Fix)
    - CodecCommander: Kext for solving 'no audio' after sleep
    - VoodooPS2Controller: Kext for keyboard
 
  - kexts/Other:
-   - AppleALC: Kext for audio (1.2.8)
+   - AppleALC: Kext for audio
    - AppleBacklightFixup: Kext for backlight control even in recovery 
-   - BrcmFirmwareRepo.kext: Kext for Wireless card
-   - BrcmPatchRAM2.kext: Kext for Wireless card
-   - FakePCIID_Broadcom_WiFi.kext: Kext for Wireless card
-   - FakePCIID.kext: Kext for Wireless card
+   - BrcmBluetoothInjector: Kext for Bluetooth in macOS 10.14+
+   - BrcmFirmwareRepo: Kext for Wireless card
+   - BrcmPatchRAM2: Kext for Wireless card
+   - FakePCIID_Broadcom_WiFi: Kext for Wireless card
+   - FakePCIID: Kext for Wireless card
    - FakeSMC: SMC emulator
-   - Lilu: Generic kext patches (1.2.8)
+   - Lilu: Generic kext patches
    - RealtekRT8111: Kext for ethernet support
    - SATA-100-series-unsupported: 
    - USBInjectAll: Injecting USB ports
