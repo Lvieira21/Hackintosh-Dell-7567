@@ -172,7 +172,7 @@ defaults write -g CGFontRenderingFontSmoothingDisabled -bool YES
  - [Rehabman](https://www.tonymacx86.com/members/rehabman.429483/)
  - [AGuyWhoIsBored](https://www.tonymacx86.com/members/aguywhoisbored.1105835/)
  - [Nihhaar](https://www.github.com/Nihhaar/) *(Putting everything together and making various patches)*
- - [maxis7567's repo] https://github.com/maxis7567/hackintosh_dell_7567_catalina_install_guide *(USB kexts and initial 10.15.x Setup)*
+ - [maxis7567's repo](https://github.com/maxis7567/hackintosh_dell_7567_catalina_install_guide) *(USB kexts and initial 10.15.x Setup)*
 
 ## References
  - https://www.tonymacx86.com/threads/guide-dell-inspiron-15-7567-and-similar-near-full-functionality.234988/
