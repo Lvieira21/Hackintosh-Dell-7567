@@ -1,12 +1,12 @@
 # Personal Hackintosh Documentation/Instructions for Dell Gaming 7567
 
-## Notice
+### Notice
 For the High Sierra (10.13) Release: This fork of [Nihhaar's repo](https://www.github.com/Nihhaar/) uses about the same config as he made (DSDT, SSDT patches and kexts), the only difference is that I managed to work out a way to make the wireless card DW1560 work.
 
 For the Catalina (10.15) Release: Initial USB kexts and config used are from [maxis7567's repo](https://github.com/maxis7567/hackintosh_dell_7567_catalina_install_guide), [Nihhaar's](https://www.github.com/Nihhaar/) kexts and config files were fused into this build and managed to continue using DW1560 (updated kexts), lastly I set up CPUFriend to stop the CPU from running at high frequency all the time. 
-### Warning: CPU Friend is configured to be used with the same CPU as mine, if you have other CPU, you NEED to configure your own SSDT for CPUFriend. [Refer to this guide](https://www.olarila.com/topic/5693-guide-ssdt-with-pikes-pm-script-and-use-with-cpufriend/)
+## Warning: CPU Friend is configured to be used with the same CPU as mine, if you have other CPU, you NEED to configure your own SSDT for CPUFriend. [Refer to this guide](https://www.olarila.com/topic/5693-guide-ssdt-with-pikes-pm-script-and-use-with-cpufriend/)
 
-## Screenshot
+### Screenshot
 ![macOS Catalina - 10.15.6](https://github.com/Lvieira21/Hackintosh-Dell-7567/blob/master/Assets/Screenshot.png?raw=true)
 
 ### Download Required Files
