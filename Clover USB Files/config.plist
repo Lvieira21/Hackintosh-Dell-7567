@@ -8,11 +8,6 @@
 		<dict>
 			<key>Debug</key>
 			<false/>
-			<key>Fixes</key>
-			<dict>
-				<key>FixHeaders</key>
-				<true/>
-			</dict>
 			<key>Name</key>
 			<string>DSDT.aml</string>
 			<key>Patches</key>
@@ -34,6 +29,8 @@
 				<dict>
 					<key>Comment</key>
 					<string>change _OSI to XOSI</string>
+					<key>Disabled</key>
+					<false/>
 					<key>Find</key>
 					<data>
 					X09TSQ==
@@ -46,6 +43,8 @@
 				<dict>
 					<key>Comment</key>
 					<string>change EHC1 to EH01</string>
+					<key>Disabled</key>
+					<false/>
 					<key>Find</key>
 					<data>
 					RUhDMQ==
@@ -58,6 +57,8 @@
 				<dict>
 					<key>Comment</key>
 					<string>change EHC2 to EH02</string>
+					<key>Disabled</key>
+					<false/>
 					<key>Find</key>
 					<data>
 					RUhDMg==
@@ -70,6 +71,8 @@
 				<dict>
 					<key>Comment</key>
 					<string>change XHCI to XHC</string>
+					<key>Disabled</key>
+					<false/>
 					<key>Find</key>
 					<data>
 					WEhDSQ==
@@ -82,6 +85,8 @@
 				<dict>
 					<key>Comment</key>
 					<string>change XHC1 to XHC</string>
+					<key>Disabled</key>
+					<false/>
 					<key>Find</key>
 					<data>
 					WEhDMQ==
@@ -95,6 +100,8 @@
 			<key>ReuseFFFF</key>
 			<false/>
 		</dict>
+		<key>FixHeaders</key>
+		<true/>
 		<key>SSDT</key>
 		<dict>
 			<key>Generate</key>
@@ -194,10 +201,14 @@
 			<dict>
 				<key>Comment</key>
 				<string>change 15 port limit to 26 in XHCI kext</string>
+				<key>Disabled</key>
+				<false/>
 				<key>Find</key>
 				<data>
 				g32MEA==
 				</data>
+				<key>InfoPlistPatch</key>
+				<false/>
 				<key>MatchOS</key>
 				<string>10.13.0,10.13.1,10.13.2,10.13.3</string>
 				<key>Name</key>
@@ -210,10 +221,14 @@
 			<dict>
 				<key>Comment</key>
 				<string>change 15 port limit to 26 in XHCI kext (credit FredWst)</string>
+				<key>Disabled</key>
+				<false/>
 				<key>Find</key>
 				<data>
 				g32UDw+DlwQ=
 				</data>
+				<key>InfoPlistPatch</key>
+				<false/>
 				<key>MatchOS</key>
 				<string>10.13.4,10.13.5</string>
 				<key>Name</key>
@@ -226,10 +241,14 @@
 			<dict>
 				<key>Comment</key>
 				<string>change 15 port limit to 26 in XHCI kext for 10.13.6 (credit Canvas)</string>
+				<key>Disabled</key>
+				<false/>
 				<key>Find</key>
 				<data>
 				g32IDw+DpwQ=
 				</data>
+				<key>InfoPlistPatch</key>
+				<false/>
 				<key>MatchOS</key>
 				<string>10.13.6</string>
 				<key>Name</key>
@@ -242,10 +261,14 @@
 			<dict>
 				<key>Comment</key>
 				<string>disable port limit in XHCI kext (credit PMHeart)</string>
+				<key>Disabled</key>
+				<false/>
 				<key>Find</key>
 				<data>
 				g/sPD4MDBQAA
 				</data>
+				<key>InfoPlistPatch</key>
+				<false/>
 				<key>MatchOS</key>
 				<string>10.14.0</string>
 				<key>Name</key>
@@ -258,10 +281,14 @@
 			<dict>
 				<key>Comment</key>
 				<string>disable port limit in XHCI kext (credit DalianSky,Ricky)</string>
+				<key>Disabled</key>
+				<false/>
 				<key>Find</key>
 				<data>
 				g/sPD4OPBAAA
 				</data>
+				<key>InfoPlistPatch</key>
+				<false/>
 				<key>MatchOS</key>
 				<string>10.14.1,10.14.2</string>
 				<key>Name</key>
@@ -295,7 +322,7 @@
 		<key>BoardManufacturer</key>
 		<string>Apple Inc.</string>
 		<key>BoardSerialNumber</key>
-		<string>X</string>
+		<string>C02734102CDHWVPCB</string>
 		<key>BoardType</key>
 		<integer>10</integer>
 		<key>BoardVersion</key>
@@ -323,7 +350,7 @@
 		<key>ProductName</key>
 		<string>MacBookPro14,1</string>
 		<key>SerialNumber</key>
-		<string>X</string>
+		<string>C02V8LZ0HV29</string>
 		<key>Trust</key>
 		<true/>
 		<key>Version</key>
